@@ -4,5 +4,7 @@
 
 $this->title = 'Map';
 ?>
-<div id="map"></div>
+<div class="width-full">
+    <div id="map"></div>
+</div>
 

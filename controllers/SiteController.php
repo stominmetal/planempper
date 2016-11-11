@@ -3,11 +3,13 @@
 namespace app\controllers;
 
 use Yii;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -121,5 +123,15 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+
+    public function actionPlanes(){
+        if(Yii::$app->request->isAjax){
+            $planes = (new Query())->from('planes-data')->all();
+
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $planes;
+        }
     }
 }
